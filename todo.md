@@ -11,7 +11,7 @@
 * [ ] show summary of workout
   * at the end of the workout
   * do I want to display during workout?
-* [ ] allow for specifying if face cards should be removed
+* [x] allow for specifying if face cards should be removed
 * [ ] animation for when cards swap
 * [ ] rest timer
 * [ ] specify how many cards/reps before rest
@@ -20,6 +20,7 @@
   * [ ] login
 * [ ] have drop downs retrieve values from data source
 * [ ] remove unneeded timer code
+* [ ] ability to reset session
 
 
 ## styling

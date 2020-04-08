@@ -56,6 +56,8 @@ var currentIndex = 0;
 var currentCard, match, suite, reps, repString, exercise, upper, lower, core, cardio, wild, exString;
 var regex = /(\w)(\w).png/;
 var finished = false;
+var skipFace = false;
+var isFace = false;
 
 var shuffle = function (array) {
 
@@ -89,12 +91,18 @@ function startWorkout() {
     getCardValue(cards[0]);
     exercise = getExercise(suite);
     exString = getReps(reps) + " " + exercise;
-    document.getElementById("exercise").innerHTML = exString;
-    document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' height='500' width='350'>";
     deck.style.display = "block";
     chooser.style.display = "none";
     timerRow.style.display = "block";
     startTimer();
+
+    isFace = checkIfFace(reps);
+    if (!(skipFace == true && isFace == true)) {
+        document.getElementById("exercise").innerHTML = exString;
+        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' height='500' width='350'>";
+    } else {
+        nextImage();
+    }
     // speak(exString);
 }
 
@@ -109,8 +117,14 @@ function nextImage() {
         getCardValue(cards[currentIndex + 1]);
         exercise = getExercise(suite);
         exString = getReps(reps) + " " + exercise;
-        document.getElementById("exercise").innerHTML = exString;
-        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' height='500' width='350'>";
+        isFace = checkIfFace(reps);
+        if(!(skipFace == true && isFace == true)) {
+            document.getElementById("exercise").innerHTML = exString;
+            document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' height='500' width='350'>";
+        } else {
+            currentIndex += 1;
+            nextImage();
+        }
         // speak(exString);
     }
     else {
@@ -167,6 +181,14 @@ function getReps(reps) {
     }
 }
 
+function checkIfFace(val) {
+    if (reps == "J" || reps == "Q" || reps == "K") {
+        return true;
+    }
+    else{
+        return false;    
+    }
+}
 function configureWorkout() {
     var upperDdl = document.getElementById("upper");
     var lowerDdl = document.getElementById("lower");
@@ -179,6 +201,7 @@ function configureWorkout() {
     core = coreDdl.options[coreDdl.selectedIndex].value;
     cardio = cardioDdl.options[cardioDdl.selectedIndex].value;
     wild = wildDdl.options[wildDdl.selectedIndex].value;
+    skipFace = document.querySelector('#faceCheckbox').checked;
 }
 
 function speak(ex) {
