@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script type="text/javascript" src="stopwatch.js"></script>   -->
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div id="chooser">
+            <div class="row" id="dropdowns">
+                <div class="col-sm">
+                    Upper:
+                    <div id="upperSelect">
+                        <select id="upper">
+                            <option value="Push Ups">Push Ups</option>
+                            <option value="Row">Row</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    Lower:
+                    <div id="lowerSelect">
+                        <select id="lower">
+                            <option value="Air Squats">Air Squats</option>
+                            <option value="Bulgarian Split Quats">Bulgarian Split Squats</option>
+                            <option value="Lunges">Lunges</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    Core:
+                    <div id="coreSelect">
+                        <select id="core">
+                            <option value="Russian Twist">Russian Twist</option>
+                            <option value="Superman">Superman</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    Cardio:
+                    <div id="cardioSelect">
+                        <select id="cardio">
+                            <option value="Mountain Climbers">Mountain Climbers</option>
+                            <option value="Burpees">Burpees</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    Wild Card:
+                    <div id="wildSelect">
+                        <select id="wild">
+                            <option value="Eight Count Body Builders">8 Count Body Builders</option>
+                            <option value="Man Makers">Man Makers</option>
+                          </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="submit-exercises">
+                <div class="col-sm center">
+                    <button id="submit" onclick="startWorkout()">Start Workout</button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="deck">
+            <div class="col-sm center">
+                <span id="img"></span><br>
+                <p class="mt-3">
+                    <span id="exercise"></span>
+                </p>
+            </div>
+        </div>
+        <div class="row" id="timer-row">
+            <div id="timerContainer">
+                <div class="timer" onclick="startTimer()">Start Timer!</div>
+                <div class="startTimer reset" onclick="startTimer()" >
+                    <i class="fas fa-play"></i>
+                  </div>
+                <div class="pauseTimer reset" onclick="pauseTimer()" >
+                    <i class="fas fa-pause"></i>
+                  </div>
+                <div class="resetTimer reset" onclick="resetTimer()">Reset</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
