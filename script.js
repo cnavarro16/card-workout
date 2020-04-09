@@ -54,6 +54,46 @@ var faceCards = ['JC.png',
     'QH.png',
     'QS.png'];
 
+var exercises = ["== Lower ==",
+    "Air Squats",
+    "Lunges",
+    "Glute Bridge",
+    "Bulgarian Split Squats",
+    "Jump Squats",
+    "== Upper ==",
+    "Push Ups",
+    "Pike Pushups",
+    "== Core ==",
+    "Plank",
+    "Russian Twist",
+    "== Cardio ==",
+    "Mountain Climbers",
+    "Jumping Jacks",
+    "Rope Skips",
+    "== Joker ==",
+    "Burpees"];
+
+var startTimerButton, pauseTimerButton, timerDisplay;
+var domReady = function(callback) {
+    document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
+};
+
+var hearts, clubs, spades, diamonds, joker;
+domReady(function() {
+    timerDisplay = document.querySelector('.timer');
+    hearts = document.getElementById("hearts");
+    clubs = document.getElementById("clubs");
+    spades = document.getElementById("spades");
+    diamonds = document.getElementById("diamonds");
+    joker = document.getElementById("joker");
+
+    populateExercises(hearts);
+    populateExercises(clubs);
+    populateExercises(spades);
+    populateExercises(diamonds);
+    populateExercises(joker);
+});
+
 var currentIndex = 0;
 var currentCard, match, suite, reps, repString, exercise, upper, lower, core, cardio, wild, exString;
 var regex = /(\w)(\w).png/;
@@ -133,20 +173,20 @@ function getCardValue(card) {
 function getExercise(suite) {
     switch (suite) {
         case "H":
-            return upper;
+            return heartEx;
             break;
         case "C":
-            return lower;
+            return clubEx;
             break;
         case "D":
-            return core;
+            return diamondEx;
             break;
         case "S":
-            return cardio;
+            return spadeEx;
             break;
         case "R":
         case "U":
-            return wild;
+            return jokerEx;
             break;
         default:
             break;
@@ -163,24 +203,31 @@ function getReps(reps) {
     }
 }
 
+var heartEx, clubEx, spadeEx, diamondEx, jokerEx;
 function configureWorkout() {
-    var upperDdl = document.getElementById("upper");
-    var lowerDdl = document.getElementById("lower");
-    var coreDdl = document.getElementById("core");
-    var cardioDdl = document.getElementById("cardio");
-    var wildDdl = document.getElementById("wild");
-
-    upper = upperDdl.options[upperDdl.selectedIndex].value;
-    lower = lowerDdl.options[lowerDdl.selectedIndex].value;
-    core = coreDdl.options[coreDdl.selectedIndex].value;
-    cardio = cardioDdl.options[cardioDdl.selectedIndex].value;
-    wild = wildDdl.options[wildDdl.selectedIndex].value;
+    heartEx = hearts.options[hearts.selectedIndex].value;
+    clubEx = clubs.options[clubs.selectedIndex].value;
+    spadeEx = spades.options[spades.selectedIndex].value;
+    diamondEx = diamonds.options[diamonds.selectedIndex].value;
+    jokerEx = joker.options[joker.selectedIndex].value;
     skipFace = document.querySelector('#faceCheckbox').checked;
     speakExercises = document.querySelector('#speechCheckbox').checked;
     
     if (!skipFace)
         cards = cards.concat(faceCards);
     shuffle(cards); 
+}
+
+
+function populateExercises(ddl) {
+    for(var i = 0; i < exercises.length; i++) {
+        var opt = exercises[i];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        
+        ddl.appendChild(el);
+    }
 }
 
 function speak(ex) {
@@ -193,18 +240,6 @@ function speak(ex) {
 ///////////////////////////////
 // https://medium.com/@olinations/an-accurate-vanilla-js-stopwatch-script-56ceb5c6f45b
 ///////////////////////////////
-var startTimerButton, pauseTimerButton, timerDisplay;
-var domReady = function(callback) {
-    document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
-};
-
-domReady(function() {
-    startTimerButton = document.querySelector('.startTimer');
-    pauseTimerButton = document.querySelector('.pauseTimer');
-    timerDisplay = document.querySelector('.timer');
-});
-
-
 var startTime;
 var updatedTime;
 var difference;

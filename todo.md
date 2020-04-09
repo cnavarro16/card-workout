@@ -3,24 +3,25 @@
 * [x] expand javascript to factor in choices of exercise
 
 ## nice-to-have functionality
-* [x] timer
-* [x] progress cards using space bar
 * [ ] total rep summary
 * [ ] have computer read out exercise
 * [ ] store session details
 * [ ] show summary of workout
   * at the end of the workout
   * do I want to display during workout?
-* [x] allow for specifying if face cards should be removed
 * [ ] animation for when cards swap
 * [ ] rest timer
 * [ ] specify how many cards/reps before rest
 * [ ] progress bar
 * [ ] profile
   * [ ] login
-* [ ] have drop downs retrieve values from data source
 * [ ] remove unneeded timer code
 * [ ] ability to reset session
+* [ ] validate that all exercises have been selected
+* [x] timer
+* [x] progress cards using space bar
+* [x] have drop downs retrieve values from data source
+* [x] allow for specifying if face cards should be removed
 
 
 ## styling
