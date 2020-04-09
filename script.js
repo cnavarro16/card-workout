@@ -60,6 +60,7 @@ var regex = /(\w)(\w).png/;
 var finished = false;
 var skipFace = false;
 var isFace = false;
+var speakExercises = false;
 
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
 var shuffle = function (array) {
@@ -80,6 +81,7 @@ function startWorkout() {
     getCardValue(cards[0]);
     exercise = getExercise(suite);
     exString = getReps(reps) + " " + exercise;
+    speak(exString);
     deck.style.display = "block";
     chooser.style.display = "none";
     timerRow.style.display = "block";
@@ -87,7 +89,7 @@ function startWorkout() {
 
     document.getElementById("exercise").innerHTML = exString;
     document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' class='card-img'>";
-    // speak(exString);
+    
 }
 
 document.addEventListener('keyup', event => {
@@ -101,12 +103,14 @@ function nextImage() {
         getCardValue(cards[currentIndex + 1]);
         exercise = getExercise(suite);
         exString = getReps(reps) + " " + exercise;
+        speak(exString);
         document.getElementById("exercise").innerHTML = exString;
         document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' class='card-img'>";
-        // speak(exString);
+        
     }
     else {
-        if (finished == false) {
+        if (!finished) {
+            speak("Workout Finished!");
             document.getElementById("exercise").innerHTML = "Workout Completed!";
             document.getElementById("img").innerHTML = "<img src='./done.jpg'>";
             pauseTimer();
@@ -172,14 +176,18 @@ function configureWorkout() {
     cardio = cardioDdl.options[cardioDdl.selectedIndex].value;
     wild = wildDdl.options[wildDdl.selectedIndex].value;
     skipFace = document.querySelector('#faceCheckbox').checked;
+    speakExercises = document.querySelector('#speechCheckbox').checked;
+    
     if (!skipFace)
         cards = cards.concat(faceCards);
     shuffle(cards); 
 }
 
 function speak(ex) {
-    var msg = new SpeechSynthesisUtterance(ex);
-    window.speechSynthesis.speak(msg);
+    if (speakExercises) {
+        var msg = new SpeechSynthesisUtterance(ex);
+        window.speechSynthesis.speak(msg);
+    }
 }
 
 ///////////////////////////////
