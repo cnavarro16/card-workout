@@ -38,7 +38,10 @@ var cards = ['1C.png',
     'AD.png',
     'AH.png',
     'AS.png',
-    'JC.png',
+    'XR.png',
+    'XU.png'];
+
+var faceCards = ['JC.png',
     'JD.png',
     'JH.png',
     'JS.png',
@@ -49,9 +52,8 @@ var cards = ['1C.png',
     'QC.png',
     'QD.png',
     'QH.png',
-    'QS.png',
-    'XR.png',
-    'XU.png'];
+    'QS.png'];
+
 var currentIndex = 0;
 var currentCard, match, suite, reps, repString, exercise, upper, lower, core, cardio, wild, exString;
 var regex = /(\w)(\w).png/;
@@ -59,28 +61,15 @@ var finished = false;
 var skipFace = false;
 var isFace = false;
 
+/* Randomize array in-place using Durstenfeld shuffle algorithm */
 var shuffle = function (array) {
-
-    var currentIndex = array.length;
-    var temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-        // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        // And swap it with the current element.
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
-
-    return array;
-
-};
-
-shuffle(cards);
+}
 
 function startWorkout() {
     var deck = document.getElementById("deck");
@@ -96,13 +85,8 @@ function startWorkout() {
     timerRow.style.display = "block";
     startTimer();
 
-    isFace = checkIfFace(reps);
-    if (!(skipFace == true && isFace == true)) {
-        document.getElementById("exercise").innerHTML = exString;
-        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' height='500' width='350'>";
-    } else {
-        nextImage();
-    }
+    document.getElementById("exercise").innerHTML = exString;
+    document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' height='500' width='350'>";
     // speak(exString);
 }
 
@@ -117,14 +101,8 @@ function nextImage() {
         getCardValue(cards[currentIndex + 1]);
         exercise = getExercise(suite);
         exString = getReps(reps) + " " + exercise;
-        isFace = checkIfFace(reps);
-        if(!(skipFace == true && isFace == true)) {
-            document.getElementById("exercise").innerHTML = exString;
-            document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' height='500' width='350'>";
-        } else {
-            currentIndex += 1;
-            nextImage();
-        }
+        document.getElementById("exercise").innerHTML = exString;
+        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' height='500' width='350'>";
         // speak(exString);
     }
     else {
@@ -181,14 +159,6 @@ function getReps(reps) {
     }
 }
 
-function checkIfFace(val) {
-    if (reps == "J" || reps == "Q" || reps == "K") {
-        return true;
-    }
-    else{
-        return false;    
-    }
-}
 function configureWorkout() {
     var upperDdl = document.getElementById("upper");
     var lowerDdl = document.getElementById("lower");
@@ -202,6 +172,9 @@ function configureWorkout() {
     cardio = cardioDdl.options[cardioDdl.selectedIndex].value;
     wild = wildDdl.options[wildDdl.selectedIndex].value;
     skipFace = document.querySelector('#faceCheckbox').checked;
+    if (!skipFace)
+        cards = cards.concat(faceCards);
+    shuffle(cards); 
 }
 
 function speak(ex) {
