@@ -272,14 +272,9 @@ function helpAlert() {
             element: "div",
             attributes: {
                 innerHTML: helpText
-            },
+            }
         }
     })
-    // swal("\
-    //     \n\nOptions:\
-    //     \n* Skip Face Cards: Show all cards except Jacks, Queens, and Kings\
-    //     \n* Speak Exercises: Have exercises spoken by computer.\
-    //     \n\nDuring Workout: Press SPACE or click on card to go to next exercise.");
 }
 
 ///////////////////////////////
