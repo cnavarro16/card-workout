@@ -57,15 +57,17 @@ var faceCards = ['JC.png',
 var exercises = ["== Lower ==",
     "Air Squats",
     "Lunges",
-    "Glute Bridge",
+    "Glute Bridges",
     "Bulgarian Split Squats",
     "Jump Squats",
+    "Squat Lunge Combos",
     "== Upper ==",
     "Push Ups",
     "Pike Pushups",
     "== Core ==",
-    "Plank",
-    "Russian Twist",
+    "Planks",
+    "Russian Twists",
+    "Four Count Flutter Kicks",
     "== Cardio ==",
     "Mountain Climbers",
     "Jumping Jacks",
@@ -96,6 +98,7 @@ domReady(function() {
 
 var currentIndex = 0;
 var currentCard, match, suite, reps, repString, exercise, upper, lower, core, cardio, wild, exString;
+var heartEx, clubEx, diamondEx, spadeEx, jokerEx;
 var regex = /(\w)(\w).png/;
 var finished = false;
 var skipFace = false;
@@ -112,11 +115,28 @@ var shuffle = function (array) {
     }
 }
 
+function main() {
+    getDropdownValues();
+    var isValid = validateDropdowns();
+    if (isValid) {
+        startWorkout();
+    } else {
+        alert("Please ensure that all exercises are selected...");
+    }
+}
+
+function validateDropdowns() {
+    if (heartEx == "null" || clubEx == "null" || spadeEx == "null" || diamondEx == "null" || jokerEx == "null") {
+        return false;
+    } else {
+        return true;
+    }
+}
 function startWorkout() {
     var deck = document.getElementById("deck");
     var chooser = document.getElementById("chooser");
     var timerRow = document.getElementById("timer-row");
-    
+
     configureWorkout();
     getCardValue(cards[0]);
     exercise = getExercise(suite);
@@ -203,13 +223,8 @@ function getReps(reps) {
     }
 }
 
-var heartEx, clubEx, spadeEx, diamondEx, jokerEx;
-function configureWorkout() {
-    heartEx = hearts.options[hearts.selectedIndex].value;
-    clubEx = clubs.options[clubs.selectedIndex].value;
-    spadeEx = spades.options[spades.selectedIndex].value;
-    diamondEx = diamonds.options[diamonds.selectedIndex].value;
-    jokerEx = joker.options[joker.selectedIndex].value;
+
+function configureWorkout() {   
     skipFace = document.querySelector('#faceCheckbox').checked;
     speakExercises = document.querySelector('#speechCheckbox').checked;
     
@@ -218,6 +233,13 @@ function configureWorkout() {
     shuffle(cards); 
 }
 
+function getDropdownValues() {
+    heartEx = hearts.options[hearts.selectedIndex].value;
+    clubEx = clubs.options[clubs.selectedIndex].value;
+    spadeEx = spades.options[spades.selectedIndex].value;
+    diamondEx = diamonds.options[diamonds.selectedIndex].value;
+    jokerEx = joker.options[joker.selectedIndex].value;
+}
 
 function populateExercises(ddl) {
     for(var i = 0; i < exercises.length; i++) {
@@ -235,6 +257,29 @@ function speak(ex) {
         var msg = new SpeechSynthesisUtterance(ex);
         window.speechSynthesis.speak(msg);
     }
+}
+
+function helpAlert() {
+    var helpText = "<p><h5>Getting Started:</h5>Select an exercise for each suit, then press <strong>Start Workout</strong> to begin.<br></span></p>";
+    helpText += "<p><h5>Options:</h5>"
+    helpText += "<strong>Skip Face Cards:</strong> Show all cards except Jacks, Queens, and Kings<br/>"
+    helpText += "<strong>Speak Exercises:</strong> Have exercises spoken by computer.</p>"
+    helpText += "<p><h5>During Workout:</h5>"
+    helpText += "Press SPACE or click on card to go to next exercise.</p>"
+    swal({
+        title: 'Help',
+        content: {
+            element: "div",
+            attributes: {
+                innerHTML: helpText
+            },
+        }
+    })
+    // swal("\
+    //     \n\nOptions:\
+    //     \n* Skip Face Cards: Show all cards except Jacks, Queens, and Kings\
+    //     \n* Speak Exercises: Have exercises spoken by computer.\
+    //     \n\nDuring Workout: Press SPACE or click on card to go to next exercise.");
 }
 
 ///////////////////////////////

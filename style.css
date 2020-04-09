@@ -24,6 +24,10 @@ body {
     background-color: slategray;
 }
 
+.suite-icon {
+  font-size: 50px;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
   .card-img {
     height: 250px;
@@ -52,4 +56,17 @@ body {
   #deck,#submit-exercises {
     margin-top: 100px;
   }
+}
+
+/* overriding styling for "help" modal */
+.swal-modal {
+  text-align: left;
+}
+
+.swal-button {
+  background-color: #616364;
+}
+
+.swal-button:not([disabled]):hover {
+  background-color: #212529;
 }

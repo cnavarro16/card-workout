@@ -4,7 +4,6 @@
 
 ## nice-to-have functionality
 * [ ] total rep summary
-* [ ] have computer read out exercise
 * [ ] store session details
 * [ ] show summary of workout
   * at the end of the workout
@@ -15,9 +14,10 @@
 * [ ] progress bar
 * [ ] profile
   * [ ] login
-* [ ] remove unneeded timer code
 * [ ] ability to reset session
-* [ ] validate that all exercises have been selected
+* [x] have computer read out exercise
+* [x] remove unneeded timer code
+* [x] validate that all exercises have been selected
 * [x] timer
 * [x] progress cards using space bar
 * [x] have drop downs retrieve values from data source
@@ -26,9 +26,9 @@
 
 ## styling
 * [x] center card on page
-* [ ] style text
-* [ ] style button
+* [x] style text
+* [x] style button
 * [x] bootstrap ??
-* [ ] page background
-* [ ] header img/text
+* [x] page background
+* [x] header img/text
   * eg. card workout

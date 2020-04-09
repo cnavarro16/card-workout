@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Workout</title>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -12,59 +13,83 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="./push-up.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Card Workout
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="helpAlert()">Help</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    <div class="container-fluid">
+        
         <div id="chooser">
             <div class="row" id="dropdowns">
-                <div class="col-sm">
-                    Hearts:
+                <div class="col-sm center">
+                    <span class="suite-icon">&heartsuit;</span>
                     <div id="heartSelect">
-                        <select id="hearts">
-                            <option>Choose an exercise</option>
+                        <select id="hearts" class="custom-select-sm">
+                            <option value="null">Choose an exercise</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm">
-                    Clubs:
+                <div class="col-sm center">
+                    <span class="suite-icon">&clubsuit;</span>
                     <div id="clubSelect">
-                        <select id="clubs">
-                            <option>Choose an exercise</option>
+                        <select id="clubs" class="custom-select-sm">
+                            <option value="null">Choose an exercise</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm">
-                    Spade:
+                <div class="col-sm center">
+                    <span class="suite-icon">&spadesuit;</span>
                     <div id="spadeSelect">
-                        <select id="spades">
-                            <option>Choose an exercise</option>
+                        <select id="spades" class="custom-select-sm">
+                            <option value="null">Choose an exercise</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm">
-                    Diamond:
+                <div class="col-sm center">
+                    <span class="suite-icon">&diamondsuit;</span>
                     <div id="diamondSelect">
-                        <select id="diamonds">
-                            <option>Choose an exercise</option>
+                        <select id="diamonds" class="custom-select-sm">
+                            <option value="null">Choose an exercise</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm">
-                    Joker:
+                <div class="col-sm center">
+                    <span class="suite-icon">&#9733;</span>
                     <div id="jokerSelect">
-                        <select id="joker">
-                            <option>Choose an exercise</option>
+                        <select id="joker" class="custom-select-sm">
+                            <option value="null">Choose an exercise</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row" id="faceToggle">
-                <div class="col-sm center">
-                    <p><input id="faceCheckbox" class="mt-3" type="checkbox" value="skip-face" name="skip-face"> Skip Face Cards</p>
-                    <p><input id="speechCheckbox" class="mt-3" type="checkbox" value="speak" name="speak"> Speak Exercises</p>
+                <div class="col-sm center mt-5">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="faceCheckbox" value="skip-face">
+                        <label class="form-check-label" for="inlineCheckbox1">Skip Face Cards</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="speechCheckbox" value="speak">
+                        <label class="form-check-label" for="speechCheckbox">Speak Exercises</label>
+                    </div>
                 </div>
             </div>
             <div class="row" id="submit-exercises">
                 <div class="col-sm center">
-                    <button id="submit" onclick="startWorkout()">Start Workout</button>
+                    <p><button id="submit" class="btn btn-light" onclick="main()">Start Workout</button></p>
+                    <p><small>"push up" icon made by <a href="https://www.flaticon.com/authors/ultimatearm" title="ultimatearm">ultimatearm</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></small></p>
                 </div>
             </div>
         </div>
@@ -82,5 +107,6 @@
            </div>
         </div>
     </div>
+    
 </body>
 </html>
