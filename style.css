@@ -1,13 +1,13 @@
 .center {
-    text-align: center;
+  text-align: center;
 }
 
-#deck {
-    display: none;
+#deck, #timer-row {
+  display: none;
 }
 
 #exercise {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .timer {
@@ -18,22 +18,6 @@
   text-align:center;
   color: #fff;
   cursor: pointer
-}
-.reset {
-  background: #550000;
-  color: white;
-  width:14.9%;
-  border-left: 1px solid #990000;
-}
-.reset:hover {
-  background: #CC0000;
-}
-.lighter {
-  background: #CC0000
-}
-
-#timer-row { 
-    display: none;
 }
 
 body {
@@ -49,6 +33,7 @@ body {
   #exercise, .timer {
     font-size: 20px;
   }
+
   #deck,#submit-exercises {
     margin-top: 10px;
   }
@@ -67,5 +52,4 @@ body {
   #deck,#submit-exercises {
     margin-top: 100px;
   }
-
 }
