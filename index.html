@@ -37,42 +37,47 @@
                 <div class="col-sm center">
                     <span class="suite-icon">&heartsuit;</span>
                     <div id="heartSelect">
-                        <select id="hearts" class="custom-select-sm">
+                        <select id="hearts" class="custom-select-sm" onchange="onSelectChange('hearts', 'heartTxt')">
                             <option value="null">Choose an exercise</option>
                         </select>
                     </div>
+                    <input type="text" id="heartTxt" class="form-control form-control-sm custom-txt mt-2"/>
                 </div>
                 <div class="col-sm center">
                     <span class="suite-icon">&clubsuit;</span>
                     <div id="clubSelect">
-                        <select id="clubs" class="custom-select-sm">
+                        <select id="clubs" class="custom-select-sm" onchange="onSelectChange('clubs', 'clubTxt')">
                             <option value="null">Choose an exercise</option>
                         </select>
                     </div>
+                    <input type="text" id="clubTxt" class="form-control form-control-sm custom-txt mt-2"/>
                 </div>
                 <div class="col-sm center">
                     <span class="suite-icon">&spadesuit;</span>
                     <div id="spadeSelect">
-                        <select id="spades" class="custom-select-sm">
+                        <select id="spades" class="custom-select-sm" onchange="onSelectChange('spades', 'spadeTxt')">
                             <option value="null">Choose an exercise</option>
                         </select>
                     </div>
+                    <input type="text" id="spadeTxt" class="form-control form-control-sm custom-txt mt-2"/>
                 </div>
                 <div class="col-sm center">
                     <span class="suite-icon">&diamondsuit;</span>
                     <div id="diamondSelect">
-                        <select id="diamonds" class="custom-select-sm">
+                        <select id="diamonds" class="custom-select-sm" onchange="onSelectChange('diamonds', 'diamondTxt')">
                             <option value="null">Choose an exercise</option>
                         </select>
                     </div>
+                    <input type="text" id="diamondTxt" class="form-control form-control-sm custom-txt mt-2"/>
                 </div>
                 <div class="col-sm center">
                     <span class="suite-icon">&#9733;</span>
                     <div id="jokerSelect">
-                        <select id="joker" class="custom-select-sm">
+                        <select id="joker" class="custom-select-sm" onchange="onSelectChange('joker', 'jokerTxt')">
                             <option value="null">Choose an exercise</option>
                         </select>
                     </div>
+                    <input type="text" id="jokerTxt" class="form-control form-control-sm custom-txt mt-2"/>
                 </div>
             </div>
             <div class="row" id="faceToggle">

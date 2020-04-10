@@ -54,7 +54,8 @@ var faceCards = ['JC.png',
     'QH.png',
     'QS.png'];
 
-var exercises = ["== Lower ==",
+var exercises = ["Custom",
+    "== Lower ==",
     "Air Squats",
     "Lunges",
     "Glute Bridges",
@@ -234,11 +235,23 @@ function configureWorkout() {
 }
 
 function getDropdownValues() {
-    heartEx = hearts.options[hearts.selectedIndex].value;
-    clubEx = clubs.options[clubs.selectedIndex].value;
-    spadeEx = spades.options[spades.selectedIndex].value;
-    diamondEx = diamonds.options[diamonds.selectedIndex].value;
-    jokerEx = joker.options[joker.selectedIndex].value;
+    var heartsDdl = hearts.options[hearts.selectedIndex].value;
+    var clubsDdl = clubs.options[clubs.selectedIndex].value;
+    var spadesDdl = spades.options[spades.selectedIndex].value;
+    var diamondsDdl = diamonds.options[diamonds.selectedIndex].value;
+    var JokerDdl = joker.options[joker.selectedIndex].value;
+
+    var heartTxt = document.getElementById("heartTxt").value;
+    var clubTxt = document.getElementById("clubTxt").value;
+    var spadeTxt = document.getElementById("spadeTxt").value;
+    var diamondTxt = document.getElementById("diamondTxt").value;
+    var jokerTxt = document.getElementById("jokerTxt").value;
+
+    heartEx = heartsDdl == "Custom" ? heartTxt : heartsDdl;
+    clubEx = clubsDdl == "Custom" ? clubTxt : clubsDdl;
+    spadeEx = spadesDdl == "Custom" ? spadeTxt : spadesDdl;
+    diamondEx = diamondsDdl == "Custom" ? diamondTxt : diamondsDdl;
+    jokerEx = JokerDdl == "Custom" ? jokerTxt : JokerDdl;
 }
 
 function populateExercises(ddl) {
@@ -275,6 +288,17 @@ function helpAlert() {
             }
         }
     })
+}
+
+function onSelectChange(id, txtId) {
+    var sel = document.getElementById(id);
+    var option = sel.options[sel.selectedIndex].text;
+    var txtBox = document.getElementById(txtId);
+    if(option == 'Custom'){ 
+        txtBox.style.display = "block";
+    } else {
+        txtBox.style.display = "none";
+    }
 }
 
 ///////////////////////////////

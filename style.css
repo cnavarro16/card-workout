@@ -70,3 +70,10 @@ body {
 .swal-button:not([disabled]):hover {
   background-color: #212529;
 }
+
+.custom-txt {
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
