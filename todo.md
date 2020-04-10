@@ -14,7 +14,7 @@
 * [ ] progress bar
 * [ ] profile
   * [ ] login
-* [ ] ability to reset session
+* [x] ability to reset session
 * [x] have computer read out exercise
 * [x] remove unneeded timer code
 * [x] validate that all exercises have been selected

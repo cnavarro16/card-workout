@@ -1,4 +1,5 @@
-var cards = ['1C.png',
+var cards = [
+    '1C.png',
     '1D.png',
     '1H.png',
     '1S.png',
@@ -39,9 +40,11 @@ var cards = ['1C.png',
     'AH.png',
     'AS.png',
     'XR.png',
-    'XU.png'];
+    'XU.png'
+];
 
-var faceCards = ['JC.png',
+var faceCards = [
+    'JC.png',
     'JD.png',
     'JH.png',
     'JS.png',
@@ -52,29 +55,109 @@ var faceCards = ['JC.png',
     'QC.png',
     'QD.png',
     'QH.png',
-    'QS.png'];
+    'QS.png'
+];
 
-var exercises = ["Custom",
-    "== Lower ==",
-    "Air Squats",
-    "Lunges",
-    "Glute Bridges",
-    "Bulgarian Split Squats",
-    "Jump Squats",
-    "Squat Lunge Combos",
-    "== Upper ==",
-    "Push Ups",
-    "Pike Pushups",
-    "== Core ==",
+var coreArray = [
+    "* Custom *",
+    "",
+    "Back Extensions",
+    "Bird Dog + Knee Touchs",
+    "Bird Dogs",
+    "Cross Body Extensions",
+    "Crunches",
+    "Four Count Flutter Kicks",
+    "Hanging Leg Raises",
+    "Heel Touches",
+    "Hollow Holds",
+    "Lying Knee Tucks",
+    "Mountain Climbers",
+    "One Leg Glute Bridges",
+    "Plank Taps",
+    "Plank Tucks",
     "Planks",
     "Russian Twists",
-    "Four Count Flutter Kicks",
-    "== Cardio ==",
-    "Mountain Climbers",
+    "Scissor Kicks",
+    "Side Plank w/ Rotations",
+    "Side Planks",
+    "Sit Ups",
+    "Walkouts"
+]
+
+var upperArray = [
+    "* Custom *",
+    "",
+    "## Pull ##",
+    "Australian Pullups",
+    "Pullups",
+    "Rows",
+    "Y Raises",
+    "",
+    "## Push ##",
+    "Diamond Pushups",
+    "Dips",
+    "Handstand Pushups",
+    "Hindu Pushups",
+    "Marine Corps Pushups",
+    "Mountain Climber Pushups",
+    "Pike Pushups",
+    "Push Release Pushups",
+    "Shoulder Tap Pushups",
+    "Spiderman Pushups",
+    "Standard Pushups",
+    "T Pushups"
+]
+
+var lowerArray = [
+    "* Custom *",
+    "",
+    "Air Squats",
+    "Bulgarian Split Squats",
+    "Cossack Squats",
+    "Donkey Kicks",
+    "Glute Bridges",
+    "Hindu Squats",
+    "Lateral Lunges",
+    "Lateral Squats",
+    "Lunges",
+    "One Leg RDLs",
+    "Pistol Squats",
+    "Quarter Jump Squats",
+    "Reverse Lunge and Hops",
+    "Reverse Lunges",
+    "Side Lunges",
+    "Single Leg Bridges",
+    "Single Leg Deadlifts",
+    "Squat-Lunge Combos",
+    "Stair Climbs",
+    "Step Ups",
+    "Sumo Squats",
+    "Wall Sits",
+    "Y Squats"
+]
+
+var explosiveArray = [
+    "* Custom *",
+    "",
+    "Frog Jumps",
+    "Jump Lunges",
+    "Jump Squats",
+    "Tuck Jumps"
+]
+
+var cardioArray = [
+    "* Custom *",
+    "",
+    "Bear Crawls",
+    "Burpees",
+    "Cross Mountain Climbers",
+    "High Knees",
     "Jumping Jacks",
     "Rope Skips",
-    "== Joker ==",
-    "Burpees"];
+    "Single Leg Burpee",
+    "Squat Thrusts",
+    "Stationary Sprints"
+]
 
 var startTimerButton, pauseTimerButton, timerDisplay;
 var domReady = function(callback) {
@@ -90,11 +173,11 @@ domReady(function() {
     diamonds = document.getElementById("diamonds");
     joker = document.getElementById("joker");
 
-    populateExercises(hearts);
-    populateExercises(clubs);
-    populateExercises(spades);
-    populateExercises(diamonds);
-    populateExercises(joker);
+    populateExercises(hearts, coreArray);
+    populateExercises(clubs, upperArray);
+    populateExercises(spades, lowerArray);
+    populateExercises(diamonds, cardioArray);
+    populateExercises(joker, explosiveArray);
 });
 
 var currentIndex = 0;
@@ -247,16 +330,16 @@ function getDropdownValues() {
     var diamondTxt = document.getElementById("diamondTxt").value;
     var jokerTxt = document.getElementById("jokerTxt").value;
 
-    heartEx = heartsDdl == "Custom" ? heartTxt : heartsDdl;
-    clubEx = clubsDdl == "Custom" ? clubTxt : clubsDdl;
-    spadeEx = spadesDdl == "Custom" ? spadeTxt : spadesDdl;
-    diamondEx = diamondsDdl == "Custom" ? diamondTxt : diamondsDdl;
-    jokerEx = JokerDdl == "Custom" ? jokerTxt : JokerDdl;
+    heartEx = heartsDdl == "* Custom *" ? heartTxt : heartsDdl;
+    clubEx = clubsDdl == "* Custom *" ? clubTxt : clubsDdl;
+    spadeEx = spadesDdl == "* Custom *" ? spadeTxt : spadesDdl;
+    diamondEx = diamondsDdl == "* Custom *" ? diamondTxt : diamondsDdl;
+    jokerEx = JokerDdl == "* Custom *" ? jokerTxt : JokerDdl;
 }
 
-function populateExercises(ddl) {
-    for(var i = 0; i < exercises.length; i++) {
-        var opt = exercises[i];
+function populateExercises(ddl, arr) {
+    for(var i = 0; i < arr.length; i++) {
+        var opt = arr[i];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
@@ -294,11 +377,18 @@ function onSelectChange(id, txtId) {
     var sel = document.getElementById(id);
     var option = sel.options[sel.selectedIndex].text;
     var txtBox = document.getElementById(txtId);
-    if(option == 'Custom'){ 
+    if(option == '* Custom *'){ 
         txtBox.style.display = "block";
     } else {
         txtBox.style.display = "none";
     }
+}
+
+function resetWorkout() {
+    currentIndex = 0;
+    resetTimer();
+    shuffle(cards);
+    startWorkout();
 }
 
 ///////////////////////////////
