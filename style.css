@@ -77,3 +77,9 @@ body {
   margin-right: auto;
   display: none;
 }
+
+.progressbar {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -233,7 +233,7 @@ function startWorkout() {
 
     document.getElementById("exercise").innerHTML = exString;
     document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[0] + "' class='card-img'>";
-    
+    setProgressBar();
 }
 
 document.addEventListener('keyup', event => {
@@ -249,8 +249,9 @@ function nextImage() {
         exString = getReps(reps) + " " + exercise;
         speak(exString);
         document.getElementById("exercise").innerHTML = exString;
-        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' class='card-img'>";
-        
+        document.getElementById("img").innerHTML = "<img src='./card_images/" + cards[currentIndex + 1] + "' class='card-img'>";   
+        setProgressBar();
+        currentIndex += 1;
     }
     else {
         if (!finished) {
@@ -259,10 +260,9 @@ function nextImage() {
             document.getElementById("img").innerHTML = "<img src='./done.jpg'>";
             pauseTimer();
             finished = true;
+            setProgressBar();
         }
-        
     }
-    currentIndex += 1;
 }
 
 function getCardValue(card) {
@@ -389,6 +389,15 @@ function resetWorkout() {
     resetTimer();
     shuffle(cards);
     startWorkout();
+}
+
+function setProgressBar()
+{
+    var percentage = Math.floor(((currentIndex + 1) / cards.length) * 100);
+    var bar = document.getElementById('progress');
+    bar.style = "width: " + percentage + "%;";
+    bar.setAttribute('aria-valuenow', percentage);
+    bar.innerHTML = (currentIndex + 1) + " / " + cards.length;
 }
 
 ///////////////////////////////
